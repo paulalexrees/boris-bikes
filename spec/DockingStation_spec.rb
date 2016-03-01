@@ -1,4 +1,0 @@
-
-describe Dockingstation do
-
-end
