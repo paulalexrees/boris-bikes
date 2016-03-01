@@ -1,4 +1,9 @@
-Here is where we're going to write about the readme for Boris Bikes.
+##Boris Bikes
 
-This will be refined further upon completion of the challenges.(Hopefully)
- 
+##Aim
+
+To build a program that will run the docking stations, simulate all the Bikes, and emulate all the infrastructure (vans, repair staff, and so on) required to make their dream a reality.
+
+##Instruction
+
+(To be completed)
