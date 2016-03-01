@@ -7,6 +7,7 @@ describe DockingStation do
     expect(DockingStation.new.release_bike).to be_an_instance_of(Bike)
   end
   it 'should return a working bike' do
-    expect(DockingStation.new.release_bike.working?).to eq(true) 
+    expect(DockingStation.new.release_bike.working?).to eq(true)
   end
+  it {should respond_to(:dock).with(1).arguments}
 end
