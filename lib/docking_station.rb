@@ -7,7 +7,7 @@ class DockingStation
   attr_accessor 'bikes'
 
   def release_bike
-    if @bikes.length == 0
+    if empty?
       raise "No bikes available"
     else
       @bikes.pop
@@ -15,11 +15,22 @@ class DockingStation
   end
 
   def dock(bike_to_dock)
-    if @bikes.length >= 20
+    if full?
       raise "No more space"
     else
       @bikes << bike_to_dock
     end
   end
+
+private
+
+  def full?
+    @bikes.length >= 20
+  end
+
+  def empty?
+    @bikes.length == 0
+  end
+
 
 end
