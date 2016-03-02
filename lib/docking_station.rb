@@ -23,7 +23,7 @@ class DockingStation
     if full?
       raise "No more space"
     else
-      bike_to_dock.working = state
+      bike_to_dock.working = state if state == false
       @bikes << bike_to_dock
     end
   end
