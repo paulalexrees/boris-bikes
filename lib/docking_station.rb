@@ -1,4 +1,5 @@
 require_relative 'bike'
+require_relative 'van'
 
 class DockingStation
   attr_accessor 'bikes', 'capacity'
@@ -37,6 +38,5 @@ private
   def empty?
     @bikes.length == 0
   end
-
 
 end
