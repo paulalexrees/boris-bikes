@@ -7,13 +7,10 @@ describe Van do
   it {should respond_to(:check_broken).with(1).argument}
   it {should respond_to(:take_broken).with(1).argument}
   it {should respond_to(:deliver).with(1).argument}
+  it {should respond_to(:collect).with(1).argument}
 
 
   describe "#check_broken" do
-    # it "should get an array from the station" do
-    #   station = DockingStation.new
-    #   expect(subject.check_broken(station)).to eq(station.bikes)
-    # end
 
     it "should return T/F depending on the bikes" do
       station = DockingStation.new
@@ -21,13 +18,13 @@ describe Van do
       expect(subject.check_broken(station)).to eq(true)
     end
 
-        it "should remove broken bikes from the station" do
-          station = DockingStation.new
-          3.times { station.dock Bike.new, false }
-          3.times { station.dock Bike.new}
-          Van.new.take_broken station
-          expect(subject.check_broken(station)).to eq(false)
-        end
+    it "should remove broken bikes from the station" do
+      station = DockingStation.new
+      3.times { station.dock Bike.new, false }
+      3.times { station.dock Bike.new}
+      Van.new.take_broken station
+      expect(subject.check_broken(station)).to eq(false)
+    end
 
   end
 
@@ -81,9 +78,40 @@ describe Van do
       van.deliver(garage)
       expect(van.van_load).to eq([])
     end
-
-
   end
 
+  describe "#collect" do
+    it "collects working bikes" do
+      van = Van.new
+      station = DockingStation.new
+      3.times { station.dock Bike.new, false }
+      3.times { station.dock Bike.new}
+      van.take_broken station
+      garage = Garage.new
+      garage_load = garage.bikes
+      van.deliver(garage)
+      expect(subject.collect(garage)).to eq(garage_load)
+    end
+    it "raises an error if there are no bikes to collect" do
+      garage = Garage.new
+      expect{subject.collect(garage)}.to raise_error("No bikes to collect!")
+    end
+    it "should move working bikes into van" do
+      van = Van.new
+      garage = Garage.new
+      10.times {garage.bikes << Bike.new}
+      garage_load = garage.bikes.map {|bike| bike.working = false}
+      van.collect(garage)
+      expect(van.van_load.any?{|bike|!bike.working?}).to eq(false)
+    end
+    it "should empty the garage" do
+      van = Van.new
+      garage = Garage.new
+      10.times {garage.bikes << Bike.new}
+      garage_load = garage.bikes.map {|bike| bike.working = false}
+      van.collect(garage)
+      expect(garage.bikes).to eq([])
+    end
 
+  end
 end

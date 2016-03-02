@@ -14,8 +14,15 @@ station2 = DockingStation.new(30)
 van = Van.new
 
 van.check_broken(station1)
-p station2.bikes.shuffle!
-p van.take_broken(station2)
+van.take_broken(station2)
 garage = Garage.new
-p van.deliver(garage)
+van.deliver(garage)
+
+van2 = Van.new
+
+van2.collect(garage)
+p van2.van_load
+puts
 p garage.bikes
+
+van.deliver(garage)

@@ -25,8 +25,17 @@ class Van
 
   def deliver(garage)
     raise "Nothing to deliver!" if @van_load.empty?
-    garage.bikes = (garage.bikes << @van_load).flatten
+    @van_load.each{|bike| garage.bikes << bike}
     @van_load = []
+  end
+
+  def collect(garage)
+    raise "No bikes to collect!" if garage.bikes.empty?
+    garage.bikes.each{|bike|
+      bike.working = true
+      @van_load << bike}
+    garage.bikes = []
+    @van_load
   end
 
 end
