@@ -16,9 +16,11 @@ describe DockingStation do
   end
 
   it 'dock the bike' do
-  param = Bike.new
-  expect(subject.dock(param)).to be  param
+  bike1 = subject.release_bike
+  expect(subject.dock(param)).to be  bike1
   end
 
-  it 
+  it 'should return a bike if one is available' do
+    bike1 = subject.release_bike
+    expect(subject.bike).to be bike1
 end
