@@ -30,10 +30,20 @@ describe DockingStation do
   it 'should raise an error if there are no bikes' do
     expect{subject.release_bike while true}.to raise_error(RuntimeError)
   end
+
+  it 'should raise an error if station is full' do
+    bike1 = Bike.new
+    expect{
+      while true
+        subject.dock(bike1)
+      end
+      }.to raise_error(RuntimeError)
+  end
+end
 =begin
   it 'should release a bike if there are bikes' do
     @docked_bikes = Bike.new
     expect(subject.release_bike).to be @docked_bikes
   end
 =end
-end
+
