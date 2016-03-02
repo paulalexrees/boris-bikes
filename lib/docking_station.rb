@@ -2,19 +2,26 @@ require_relative 'bike'
 
 class DockingStation
 
-  @docked_bikes = nil
-
+  def initialize
+  @docked_bikes = Bike.new
+  end
 
   def release_bike
     if @docked_bikes != nil
-      @docked_bikes
+      @docked_bikes = nil
+      Bike.new
+
     else
       raise "no bikes available"
     end
   end
 
   def dock(bike_name)
+   # if @docked_bikes != nil
+    #  raise 'station is full'
+    #else
     @docked_bikes = bike_name
+    #end
   end
 
   def dock_status
