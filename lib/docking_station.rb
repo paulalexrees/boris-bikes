@@ -12,15 +12,18 @@ class DockingStation
   def release_bike
     if empty?
       raise "No bikes available"
+    elsif !@bikes.last.working?
+      raise "Bike is broken"
     else
       @bikes.pop
     end
   end
 
-  def dock(bike_to_dock)
+  def dock(bike_to_dock, state=true)
     if full?
       raise "No more space"
     else
+      bike_to_dock.working = state
       @bikes << bike_to_dock
     end
   end

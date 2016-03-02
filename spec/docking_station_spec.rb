@@ -5,7 +5,7 @@ describe DockingStation do
   # let(:subject) {Dockingsubject.new(20)}
 
   it {should respond_to(:release_bike)}
-  it {should respond_to(:dock).with(1).argument}
+
 
   describe "#release_bike" do
     it 'should return a Bike class' do
@@ -20,12 +20,17 @@ describe DockingStation do
       #subject.bikes.length = 0
       expect{subject.release_bike}.to raise_error("No bikes available") if subject.bikes.length == 0
     end
+    it 'should raise error if the next bike to be released is broken' do
+      subject.dock(Bike.new, false)
+      expect{subject.release_bike}.to raise_error("Bike is broken") if !subject.bikes.last.working?
+    end
   end
 
   describe "#dock" do
     it 'should raise error if trying to dock at full capacity' do
       expect{subject.dock(Bike.new)}.to raise_error("No more space") if subject.bikes.length >= subject.capacity
     end
+    it {should respond_to(:dock).with(2).arguments}
   end
 
   describe "#new" do
