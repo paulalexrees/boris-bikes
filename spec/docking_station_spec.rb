@@ -9,11 +9,11 @@ describe DockingStation do
 
   describe "#release_bike" do
     it 'should return a Bike class' do
-      subject.dock(Bike.new)
+      subject.dock double(:bike)
       expect(subject.release_bike).to be_an_instance_of(Bike)
     end
     it 'should return a working bike if there are bikes' do
-      subject.dock(Bike.new)
+      subject.dock double(:bike)
       expect(subject.release_bike.working?).to eq(true)
     end
     it 'should raise error if no bikes available' do
@@ -21,14 +21,14 @@ describe DockingStation do
       expect{subject.release_bike}.to raise_error("No bikes available") if subject.bikes.length == 0
     end
     it 'should raise error if the next bike to be released is broken' do
-      subject.dock(Bike.new, false)
+      subject.dock(double(:bike), false)
       expect{subject.release_bike}.to raise_error("Bike is broken") if !subject.bikes.last.working?
     end
   end
 
   describe "#dock" do
     it 'should raise error if trying to dock at full capacity' do
-      expect{subject.dock(Bike.new)}.to raise_error("No more space") if subject.bikes.length >= subject.capacity
+      expect{subject.dock double(:bike)}.to raise_error("No more space") if subject.bikes.length >= subject.capacity
     end
     it {should respond_to(:dock).with(2).arguments}
   end
