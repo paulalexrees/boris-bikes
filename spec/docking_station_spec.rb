@@ -2,7 +2,6 @@ require 'docking_station'
 
 
 describe DockingStation do
-  it {is_expected.to respond_to :release_bike}
   it {is_expected.to respond_to(:dock).with(1).argument}
   it {is_expected.to respond_to :dock}
   it {is_expected.to respond_to :bike}
@@ -17,10 +16,13 @@ describe DockingStation do
 
   it 'dock the bike' do
   bike1 = subject.release_bike
-  expect(subject.dock(param)).to be  bike1
+  expect(subject.dock(bike1)).to be  bike1
   end
 
   it 'should return a bike if one is available' do
     bike1 = subject.release_bike
+    subject.dock(bike1)
     expect(subject.bike).to be bike1
+  end
+
 end

@@ -2,26 +2,22 @@ require_relative 'bike'
 
 class DockingStation
 
-  attr_reader :dock_set
-
-
-  def initialize
-    @dock_set = []
-  end
+  @docked_bikes = ''
 
   def release_bike
     Bike.new
   end
 
   def dock(bike_name)
-     bike_name
+    @docked_bikes = bike_name
   end
 
   def dock_status
-    @dock_status.empty?
+    !(@docked_bikes.empty?)
   end
 
   def bike
+    @docked_bikes
   end
 
 end
