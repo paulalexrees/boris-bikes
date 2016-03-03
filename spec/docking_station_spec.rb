@@ -17,10 +17,10 @@ describe DockingStation do
     subject.dock(bike1)
     expect(subject.release_bike).to be_a Bike
   end
-  it 'returns a true if the bike is working' do
-    bike = Bike.new
-  expect(bike.working?).to be true
-  end
+  #it 'returns a true if the bike is working' do
+  #  bike = Bike.new
+  #expect(bike.working?).to be true
+  #end
 
   it 'dock the bike' do
   bike1 = Bike.new

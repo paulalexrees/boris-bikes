@@ -14,7 +14,7 @@ Default_capacity = 20
 
 
   def release_bike
-    if empty?
+    if empty? || @docked_bikes.last.working == false
       raise "no bikes available"
     else
       @docked_bikes.pop
