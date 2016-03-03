@@ -34,7 +34,7 @@ describe DockingStation do
   it 'should raise an error if there are no bikes' do
     expect{subject.release_bike while true}.to raise_error(RuntimeError)
   end
-  
+
   it 'should raise an error if station is full' do
     expect{
       while true
@@ -42,6 +42,7 @@ describe DockingStation do
       end
       }.to raise_error(RuntimeError)
   end
+
 end
 =begin
   it 'should release a bike if there are bikes' do

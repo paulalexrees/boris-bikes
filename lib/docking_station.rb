@@ -1,17 +1,31 @@
 require_relative 'bike'
-
+require_relative 'garage'
+require_relative 'van'
 
 class DockingStation
   Default_capacity = 20
-  attr_accessor :Default_capacity, :capacity
+  attr_accessor :Default_capacity, :capacity, :docked_bikes, :broken_bikes
 
 
   def initialize(capacity=Default_capacity)
     @capacity = capacity
     @docked_bikes = []
+    @broken_bikes = []
   end
 
+  def van_to_dock(ok_bikes)
+    ok_bikes.each {|bike| @docked_bikes << bike if bike.working?}
+  end
 
+  def bike_to_van
+    @docked_bikes.each do |bike|
+      if !bike.working
+        @broken_bikes << bike
+        @docked_bikes.delete bike
+      end
+    end
+    @broken_bikes
+  end
 
   def release_bike
     if empty? || @docked_bikes.last.working == false
@@ -38,6 +52,10 @@ class DockingStation
     @docked_bikes.last
   end
 
+
+
+
+
   private
 
   def full?
@@ -47,4 +65,8 @@ class DockingStation
   def empty?
     @docked_bikes.length == 0
   end
+
+
+
+
 end
