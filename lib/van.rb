@@ -1,13 +1,11 @@
-require_relative 'bike'
-
 class Van
 
-  def take_from_dock(sucky_bikes)
+  def collect_from_dock(sucky_bikes)
     sucky_bikes
   end
 
-  def take_to_dock(ok_bikes)
-    ok_bikes
+  def return_to_dock(fixed_bikes)
+    fixed_bikes
   end
 
 end
