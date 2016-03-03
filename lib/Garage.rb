@@ -12,4 +12,6 @@ class Garage
   def to_return(ok_bikes)
     @fixed_bikes = ok_bikes
   end
+
+
 end
