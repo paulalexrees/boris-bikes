@@ -1,4 +1,3 @@
-
 require 'van'
 
 describe Van do
@@ -11,10 +10,9 @@ describe Van do
 
   it "should move fixed bikes to the docking station" do
     station = DockingStation.new
-    sucky_bikes = station.bike_to_van
-    sucky_bike = subject.take_from_dock sucky_bikes
+    sucky_bikes = subject.take_from_dock(station.bike_to_van)
     garage = Garage.new
-    ok_bike = garage.to_return(sucky_bike)
+    ok_bike = garage.fixed(sucky_bikes)
     expect(subject.take_to_dock ok_bike).to all be_working
   end
 end

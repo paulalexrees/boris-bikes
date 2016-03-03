@@ -13,20 +13,6 @@ class DockingStation
     @broken_bikes = []
   end
 
-  def van_to_dock(ok_bikes)
-    ok_bikes.each {|bike| @docked_bikes << bike if bike.working?}
-  end
-
-  def bike_to_van
-    @docked_bikes.each do |bike|
-      if !bike.working
-        @broken_bikes << bike
-        @docked_bikes.delete bike
-      end
-    end
-    @broken_bikes
-  end
-
   def release_bike
     if empty? || @docked_bikes.last.working == false
       raise "no bikes available"
@@ -44,6 +30,25 @@ class DockingStation
     end
   end
 
+  def bike_to_van
+    @docked_bikes.each do |bike|
+      if !bike.working
+        @broken_bikes << bike
+        @docked_bikes.delete bike
+      end
+    end
+    @broken_bikes
+  end
+
+  def van_to_dock(ok_bikes)
+    ok_bikes.each do |bike|
+      if bike.working
+        @docked_bikes << bike
+        @broken_bikes.delete bike
+      end
+    end
+  end
+
   def dock_status
     @docked_bikes == 0 ? "empty" : "#{@docked_bikes.length} bikes"
   end
@@ -51,9 +56,6 @@ class DockingStation
   def bike
     @docked_bikes.last
   end
-
-
-
 
 
   private
@@ -65,8 +67,4 @@ class DockingStation
   def empty?
     @docked_bikes.length == 0
   end
-
-
-
-
 end
