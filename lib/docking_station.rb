@@ -2,13 +2,13 @@ require_relative 'bike'
 
 
 class DockingStation
-Default_capacity = 20
+  Default_capacity = 20
   attr_accessor :Default_capacity, :capacity
 
 
   def initialize(capacity=Default_capacity)
-  @capacity = capacity
-  @docked_bikes = []
+    @capacity = capacity
+    @docked_bikes = []
   end
 
 
@@ -25,8 +25,8 @@ Default_capacity = 20
     if full?
       raise 'station is full'
     else
-    @docked_bikes << bike_name
-    bike_name
+      @docked_bikes << bike_name
+      bike_name
     end
   end
 

@@ -11,7 +11,6 @@ describe DockingStation do
     expect(station.capacity).to eq 5
   end
 
-
   it 'expects instance of bike class' do
     bike1 = Bike.new
     subject.dock(bike1)
