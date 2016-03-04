@@ -3,8 +3,18 @@ require_relative 'van'
 
 class Garage
 
-  def fixed(sucky_bikes)
-    sucky_bikes.map { |bike| bike.fix }
+  attr_reader :broken_storage
+
+  def initialize
+    @broken_storage = []
   end
-  
+
+  def unload(sucky_bikes)
+    @broken_storage = sucky_bikes
+  end
+
+  def fixed
+    @broken_storage.map { |bike| bike.fix }
+  end
+
 end

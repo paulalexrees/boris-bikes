@@ -1,11 +1,9 @@
 require 'garage'
 
 describe Garage do
-  it 'should fix broken bikes' do
-    bike = Bike.new
-    bike.report_broken
-    sucky_bikes = [bike]
-    subject.fixed(sucky_bikes)
-    expect(sucky_bikes).to all be_working
+  describe "#fixed" do
+    it 'should call fix method each broken bike' do
+      subject.broken_storage.each {|bike| expect(bike).to receive(:fix)}
+    end
   end
 end

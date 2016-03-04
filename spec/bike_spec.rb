@@ -8,4 +8,10 @@ describe Bike do
     end
   end
 
+  describe "#fix" do
+    it "fixes broken bikes" do
+      subject.report_broken
+      expect(subject.fix).to eq true
+    end
+  end
 end
